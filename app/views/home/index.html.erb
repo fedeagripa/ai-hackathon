@@ -1,18 +1,27 @@
 <h1> CONTENT GENERATOR FOR EVERYONE - BY CODE MONEKYS </h1>
 
-<p>Please tell us what topic we can help you out with today</p>
+<div style="display:flex">
+  <div style="margin-right: 20px">
+    <p>Please tell us what topic we can help you out with today</p>
 
-<%= form_for(:content, url: { action: 'generate', format: 'json' }, remote: true, data: { turbo: false }) do |f| %>
-  <%= f.text_area(:text, size: "50x10") %>
-  <%= submit_tag("Let the magic happen") %>
-<% end %>
+    <%= form_for(:content, url: { action: 'generate', format: 'json' }, remote: true, data: { turbo: false }) do |f| %>
+      <%= f.text_area(:text, size: "80x30") %>
+      <%= submit_tag("Let the magic happen") %>
+    <% end %>
+  </div>
 
-<p> AI Response </p>
-<% if session[:text_response] %>
-  <p class="ai-response">
-    <%= session[:text_response] %>
-  </p>
-  <br/>
-  <h3> And if you need some visual help or motivation also... </h3>
-  <img src=<%= session[:image_response] %> />
-<% end %>
+  <div>
+    <h3> Last Response </h3>
+    <% if session[:text_response] %>
+      <p class="ai-response">
+        <%= raw session[:text_response] %>
+      </p>
+      <%= text_area_tag :ai_result, session[:text_response], escape: false, size: "100x20" %>
+      <br/>
+      <h3> Do you prefer to learn with more fun? Hear it as a story: </h3>
+      <%= session[:storytell] %>
+      <h3> And if you need some visual help or motivation also... </h3>
+      <img src=<%= session[:image_response] %> />
+    <% end %>
+  </div>
+</div>
