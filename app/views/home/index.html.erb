@@ -1,0 +1,18 @@
+<h1> CONTENT GENERATOR FOR EVERYONE - BY CODE MONEKYS </h1>
+
+<p>Please tell us what topic we can help you out with today</p>
+
+<%= form_for(:content, url: { action: 'generate', format: 'json' }, remote: true, data: { turbo: false }) do |f| %>
+  <%= f.text_area(:text, size: "50x10") %>
+  <%= submit_tag("Let the magic happen") %>
+<% end %>
+
+<p> AI Response </p>
+<% if session[:text_response] %>
+  <p class="ai-response">
+    <%= session[:text_response] %>
+  </p>
+  <br/>
+  <h3> And if you need some visual help or motivation also... </h3>
+  <img src=<%= session[:image_response] %> />
+<% end %>

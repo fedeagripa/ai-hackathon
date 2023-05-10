@@ -44,6 +44,8 @@ gem "bootsnap", require: false
 
 gem "ruby-openai"
 gem "dotenv-rails", groups: [:development, :test]
+gem "byebug"
+gem "redcarpet"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
