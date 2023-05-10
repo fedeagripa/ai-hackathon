@@ -26,7 +26,7 @@ class HomeController < ApplicationController
         size: "512x512"
       }
     )
-    session[:text_response] = text_response
+    session[:text_response] = Redcarpet::Markdown.new(text_response).to_html.html_safe
     session[:image_response] = image_response.dig("data", 0, "url")
     redirect_to root_path
   end
